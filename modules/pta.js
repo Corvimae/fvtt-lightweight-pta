@@ -36,7 +36,7 @@ Hooks.once('init', function() {
   });
 
   game.settings.register('pta', 'rollDamageDice', {
-    name: 'Roll damage dice',
+    name: 'Roll Damage Dice',
     hint: `If enabled, ${POKEMON_STRING} move macros will roll damage dice as well.`,
     scope: 'client',
     config: true,

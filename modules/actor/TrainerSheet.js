@@ -110,7 +110,7 @@ export default class TrainerSheet extends ActorSheet {
   }
 
   calculateFeatureUses(feature, actorData) {
-    return feature.data.additionalUseLevelCount > 0 ? 1 + Math.floor(actorData.level, feature.data.additionalUseLevelCount) : 1;
+    return feature.data.additionalUseLevelCount > 0 ? 1 + Math.floor(actorData.level / feature.data.additionalUseLevelCount) : 1;
   }
 
   insertDerivedStatData(data) {
