@@ -11,6 +11,7 @@ import { handleRenderPokemonManagerSheet } from './hooks/handleRenderPokemonMana
 import { POKEMON_STRING } from './utils/constants.js';
 import { restartPokemonHealthSyncInterval } from './processes/syncPokemonHealthValues.js';
 import { getInitiativeFormula } from './utils/getInitiativeFormula.js';
+import { migrateActorData } from './migrations/migrate.js';
 
 Hooks.once('init', function() {
   console.info('[PTA] Initializing Lightweight PTA...');
@@ -32,6 +33,15 @@ Hooks.once('init', function() {
     },
     default: 20,
     onChange: restartPokemonHealthSyncInterval,
+  });
+
+  game.settings.register('pta', 'rollDamageDice', {
+    name: 'Roll damage dice',
+    hint: `If enabled, ${POKEMON_STRING} move macros will roll damage dice as well.`,
+    scope: 'client',
+    config: true,
+    type: Boolean,
+    default: true,
   });
 
   Actors.unregisterSheet('core', ActorSheet);
@@ -69,4 +79,6 @@ Hooks.on('renderPokemonManagerSheet', handleRenderPokemonManagerSheet);
 
 Hooks.once('ready', () => {
   restartPokemonHealthSyncInterval();
+
+  game.actors.forEach(migrateActorData);
 });

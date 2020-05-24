@@ -59,7 +59,7 @@ export default class TrainerSheet extends ActorSheet {
     }
 
     if(this.actor.owner) {
-      html.find('.skill-name.rollable').click(this.handleRollSkill.bind(this));
+      html.find('.skill-name.rollable:not(.disabled)').click(this.handleRollSkill.bind(this));
     }
 
     super.activateListeners(html);

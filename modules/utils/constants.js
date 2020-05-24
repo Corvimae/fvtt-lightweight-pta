@@ -17,6 +17,10 @@ export const STAT_FULL_NAMES = {
 };
 
 export const SKILL_NAMES = {
+  breathless: 'Breathless',
+  fasting: 'Fasting',
+  endurance: 'Endurance',
+  resistant: 'Resistant',
   browbeat: 'Browbeat',
   jump: 'Jump',
   sprint: 'Sprint',

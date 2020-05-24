@@ -113,6 +113,18 @@
   <li class="skill-list-column">
     <div class="skill-list-item">
       <div class="skill-list-stat-header">
+        HP
+      </div>
+      {{#each data.skills.hp.items as |skillData skill|}}
+      <div class="skill-row" data-skill="{{skill}}">
+        <a class="trained-toggle skill-trained disabled" title="{{skill.hover}}">{{{skillData.icon}}}</a>
+        <a class="skill-name rollable disabled">{{skillData.skillName}}</a>
+        <div class="skill-modifier hidden">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="skill-list-item">
+      <div class="skill-list-stat-header">
         Attack
       </div>
       {{#each data.skills.atk.items as |skillData skill|}}
@@ -135,6 +147,8 @@
       </div>
       {{/each}}
     </div>
+  </li>
+  <li class="skill-list-column">
     <div class="skill-list-item">
       <div class="skill-list-stat-header">
         Special Attack
@@ -147,8 +161,6 @@
       </div>
       {{/each}}
     </div>
-  </li>
-  <li class="skill-list-column">
     <div class="skill-list-item">
       <div class="skill-list-stat-header">
         Special Defense

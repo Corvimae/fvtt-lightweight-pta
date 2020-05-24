@@ -124,6 +124,14 @@
   border-bottom: none;
 }
 
+.trained-toggle.disabled {
+  visibility: hidden;
+}
+
+.skill-name.disabled:hover {
+  text-shadow: none;
+}
+
 .stat {
   position: relative;
   border: 2px groove #eeede0;
@@ -221,6 +229,10 @@
   margin-left: auto;
   color: #7a7971;
   font-weight: 400;
+}
+
+.skill-modifier.hidden {
+  display: none;
 }
 
 .sheet-navigation {

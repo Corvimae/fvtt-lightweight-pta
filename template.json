@@ -71,6 +71,22 @@
         "underwater": 3
       },
       "skills": {
+        "hp": {
+          "items": {
+            "breathless": {
+              "trained": false
+            },
+            "fasting": {
+              "trained": false
+            },
+            "endurance": {
+              "trained": false
+            },
+            "resistant": {
+              "trained": false
+            }
+          }
+        },
         "atk": {
           "items": {
             "browbeat": {
