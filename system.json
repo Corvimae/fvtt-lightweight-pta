@@ -15,6 +15,6 @@
   "gridUnits": "m",
   "primaryTokenAttribute": "resources.health",
   "url": "https://github.com/corvimae/foundry-pta",
-  "manifest": "https://raw.githubusercontent.com/corvimae/foundry-pta/master/system.json",
-  "download": "https://github.com/Corvimae/foundry-pta/archive/1.0.0.zip"
+  "manifest": "https://raw.githubusercontent.com/corvimae/fvtt-lightweight-pta/master/system.json",
+  "download": "https://github.com/Corvimae/fvtt-lightweight-pta/archive/1.0.0.zip"
 }
