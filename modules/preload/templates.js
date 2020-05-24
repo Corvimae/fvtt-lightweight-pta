@@ -1,5 +1,6 @@
 export const preloadTemplates = async function() {
   const templatePaths = [
+    'systems/pta/templates/apps/pokemonManagerLogin.html',
     'systems/pta/templates/macros/move.html',
     'systems/pta/templates/sheets/actors/trainer.html',
     'systems/pta/templates/sheets/actors/partials/skills.html',

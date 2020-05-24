@@ -175,7 +175,8 @@
     },
     "pokemon": {
       "templates": ["common"],
-      "species": ""
+      "species": "",
+      "sheetID": 0
     }
   },
   "Item": {

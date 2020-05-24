@@ -5,12 +5,15 @@ import CarriableSheet from './item/CarriableSheet.js';
 import MoveSheet from './item/MoveSheet.js';
 import { rollMove, rollMetronome } from './macros/macros.js';
 import { handleItemDrop } from './hooks/handleItemDrop.js';
+import PokemonManagerSheet from './actor/PokemonManagerSheet.js';
+import { renderEntitySheetConfig } from './hooks/handleRenderEntitySheetConfig.js';
 
 Hooks.once('init', function() {
   console.info('Initializing Lightweight PTA...');
 
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('pta', TrainerSheet, { types: ['trainer'], makeDefault: true });
+  Actors.registerSheet('pta', PokemonManagerSheet, { types: ['pokemon'], makeDefault: false });
   
   Items.registerSheet('pta', FeatureSheet, { types: ['feature'], makeDefault: true });
   Items.registerSheet('pta', CarriableSheet, { types: ['carriable'], makeDefault: true });
@@ -31,3 +34,5 @@ Hooks.on('hotbarDrop', (_hotbar, { type, id }, position) => {
     handleItemDrop(game.items.get(id), position);
   }
 });
+
+Hooks.on('renderEntitySheetConfig', renderEntitySheetConfig);

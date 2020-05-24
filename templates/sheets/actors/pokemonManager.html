@@ -1,0 +1,14 @@
+<form class="{{cssClass}} pokemon-manager-page" autocomplete="off">
+  {{#if data.derived.hasAttachedSheet}}
+  <div class="attached-sheet-container">
+    <iframe class="attached-sheet-iframe" src="https://pokemon.maybreak.com/pokemon/{{data.sheetID}}" width="100%" height="100%" allowfullscreen="true;">
+  </iframe></div>
+  {{else}}
+  <div class="no-attached-sheet-message">
+    <b>There is no Pokémon Manager sheet attached to this actor.</b>
+    <p>
+      You can add one from the Sheet Configuration panel.
+    </p>
+  </div>
+  {{/if}}
+</form>

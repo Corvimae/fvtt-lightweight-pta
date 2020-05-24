@@ -38,3 +38,5 @@ export const SKILL_NAMES = {
   sleightOfHand: 'Sleight of Hand',
   stealth: 'Stealth',
 }
+
+export const POKEMON_STRING = 'Pokémon';
