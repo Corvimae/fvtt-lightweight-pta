@@ -1,0 +1,90 @@
+<form class="{{cssClass}} flexcol feature-page" autocomplete="off">
+  <div class="header-details no-bottom-border">
+    <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+    <div class="name-and-class">
+      <h1 class="item-name">
+        <input name="name" type="text" value="{{item.name}}" placeholder="A New Feature"/>
+      </h1>
+      <div class="item-subname">
+        <input name="data.trainerClass" type="text" value="{{data.trainerClass}}" placeholder="Pokemon Trainer"/>
+      </div>
+    </div>
+  </div>
+  {{!-- Navigation --}}
+  {{#if editable}}
+  <nav class="sheet-navigation tabs" data-group="primary">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="configuration">Configuration</a>
+  </nav>
+  {{/if}}
+
+  <div class="sheet-content">
+    {{!-- Skills --}}
+    <div class="tab description" data-group="primary" data-tab="description">
+      <div class="item-details">
+        <div class="feature-usage-details">
+          <div class="feature-legality {{#if data.isLeagueLegal}} legal {{else}} illegal {{/if}}">
+            {{data.derived.leagueLegalLabel}}
+          </div>
+          <input name="data.frequency" type="text" value="{{data.frequency}}" placeholder="Daily"/>
+        </div>
+        <div class="item-details-row">
+          <label>{{data.derived.triggerOrTargetLabel}}</label>
+          <input
+            name="data.target"
+            type="text"
+            value="{{data.target}}"
+            placeholder=""
+          />
+        </div>
+        <div class="item-details-row">
+          <label>Description</label>
+          <div class="editor-container">
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab configuration" data-group="primary" data-tab="configuration">
+      <div class="form-group">
+        <label>League legal</label>
+        <div class="form-fields">
+          <label class="checkbox">
+            <input name="data.isLeagueLegal" type="checkbox" {{checked data.isLeagueLegal}}/>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Is reaction</label>
+        <div class="form-fields">
+          <label class="checkbox">
+            <input name="data.isReaction" type="checkbox" {{checked data.isReaction}}/>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Has uses</label>
+        <div class="form-fields">
+          <label class="checkbox">
+            <input name="data.hasUses" type="checkbox" {{checked data.hasUses}}/>
+          </label>
+        </div>
+      </div>
+      {{#if data.hasUses}}
+      <div class="form-group">
+        <label>Additional use every X levels</label>
+        <div class="form-fields">
+          <input
+            name="data.additionalUseLevelCount" 
+            type="text"
+            value="{{data.additionalUseLevelCount}}"
+            data-dtype="Number"
+            placeholder="0"
+          />
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</form>

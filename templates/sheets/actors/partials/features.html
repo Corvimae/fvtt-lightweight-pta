@@ -1,0 +1,56 @@
+<div class="features-list-actions">
+  <a class="list-action restore-feature-uses">Restore all feature uses</a>
+</div>
+
+<div class="features-list">
+  {{#each data.features as |classFeatures class|}}
+    <div class="list-subheader" data-trainerclass="{{class}}">
+      <div class="feature-list-subheader-name with-divider">{{class}}</div>
+      <div class="list-subheader-column-name">Uses</div>
+      <div class="list-subheader-column-name">Legal?</div>
+      <a class="item-create add-feature" title="Add Feature">
+        <i class="fa fa-plus"></i>
+        Add
+      </a>
+    </div>
+    {{#each classFeatures as |feature|}}
+    <div class="item grid-row" data-item-id="{{feature._id}}">
+      <div class="item-list-icon" style="background-image: url({{feature.img}})"></div>
+      <a class="item-list-name">{{feature.name}}</a>
+      <div class="item-value item-uses">
+        {{#if feature.data.hasUses}}
+        <input
+          type="text"
+          value="{{feature.data.uses}}"
+          data-dtype="Number"
+          placeholder="0"
+        />
+        <span class="item-uses-max">/<span class="item-uses-max-value">{{feature.data.maxUses}}</span></span>
+        {{/if}}
+      </div>
+      <div class="item-value feature-legality {{feature.data.leagueLegalLabel}}">
+        {{feature.data.leagueLegalLabel}}
+      </div>
+      <div class="item-actions item-value">
+        {{#if ../../owner}}
+        <div class="item-controls">
+          <a class="item-control edit-item" title='Edit'>
+            <i class="fas fa-edit"></i>
+          </a>
+          <a class="item-control delete-item" title='Delete'>
+            <i class="fas fa-trash"></i>
+          </a>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+    {{/each}}
+  {{/each}}
+  <div class="list-subheader" data-trainerclass="{{class}}">
+    <a class="item-create add-class" title="Add new class">
+      <i class="fa fa-plus"></i>
+      Add new class
+    </a>
+  </div>
+
+</div>

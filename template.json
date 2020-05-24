@@ -1,0 +1,216 @@
+{
+  "Actor": {
+    "types": ["trainer", "pokemon"],
+    "templates": {
+      "common": {
+        "level": 1,
+        "stats": {
+          "hp": {
+            "value": 10
+          },
+          "atk": {
+            "value": 10,
+            "combatStages": {
+              "value": 0,
+              "min": -6,
+              "max": 6
+            }
+          },
+          "def": {
+            "value": 10,
+            "combatStages": {
+              "value": 0,
+              "min": -6,
+              "max": 6
+            }
+          },
+          "spatk": {
+            "value": 10,
+            "combatStages": {
+              "value": 0,
+              "min": -6,
+              "max": 6
+            }
+          },
+          "spdef": {
+            "value": 10,
+            "combatStages": {
+              "value": 0,
+              "min": -6,
+              "max": 6
+            }
+          },
+          "spd": {
+            "value": 10,
+            "combatStages": {
+              "value": 0,
+              "min": -6,
+              "max": 6
+            }
+          }
+        },
+        "resources": {
+          "health": {
+            "value": 0,
+            "max": 0
+          }
+        }
+      }
+    },
+    "trainer": {
+      "templates": ["common"],
+      "details": {
+        "classes": "",
+        "badges": 0,
+        "money": 0,
+        "caughtPokemon": 0
+      },
+      "movement": {
+        "overland": 5,
+        "surface": 4,
+        "underwater": 3
+      },
+      "skills": {
+        "atk": {
+          "items": {
+            "browbeat": {
+              "trained": false
+            },
+            "jump": {
+              "trained": false
+            },
+            "sprint": {
+              "trained": false
+            },
+            "strength": {
+              "trained": false
+            }
+          }
+        },
+        "def": {
+          "items": {
+            "concentration": {
+              "trained": false
+            },
+            "deflection": {
+              "trained": false
+            },
+            "healing": {
+              "trained": false
+            },
+            "tireless": {
+              "trained": false
+            }
+          }
+        },
+        "spatk": {
+          "items": {
+            "engineering": {
+              "trained": false
+            },
+            "history": {
+              "trained": false
+            },
+            "investigate": {
+              "trained": false
+            },
+            "programming": {
+              "trained": false
+            }
+          }
+        },
+        "spdef": {
+          "items": {
+            "bluff": {
+              "trained": false
+            },
+            "perception": {
+              "trained": false
+            },
+            "soothe": {
+              "trained": false
+            },
+            "streetwise": {
+              "trained": false
+            }
+          }
+        },
+        "spd": {
+          "items": {
+            "acrobatics": {
+              "trained": false
+            },
+            "perform": {
+              "trained": false
+            },
+            "sleightOfHand": {
+              "trained": false
+            },
+            "stealth": {
+              "trained": false
+            }
+          }
+        }
+      },
+      "background": {
+        "age": 18,
+        "dateOfBirth": "01/01/1970",
+        "gender": "",
+        "height": "",
+        "weight": "",
+        "pronouns": "",
+        "pronunciationOfName": "",
+        "regionOfResidence": "",
+        "personalBio": "",
+        "motive": "",
+        "roleModel": "",
+        "aspiration": "",
+        "signatureSomething": "",
+        "dream": "",
+        "favoriteColor": "",
+        "favoritePokemon": "",
+        "favoriteType": "",
+        "favoriteFood": ""
+      }
+    },
+    "pokemon": {
+      "templates": ["common"],
+      "species": ""
+    }
+  },
+  "Item": {
+    "types": ["move", "capability", "feature", "ability", "carriable"],
+    "move": {
+      "type": "",
+      "frequency": "",
+      "range": "",
+      "damage": "",
+      "accuracy": 0,
+      "attackType": "",
+      "effects": ""
+    },
+    "capability": {
+      "description": ""
+    },
+    "ability": {
+      "frequency": "",
+      "description": ""
+    },
+    "feature": {
+      "frequency": "Daily",
+      "trainerClass": "",
+      "target": "",
+      "additionalUseLevelCount": 0,
+      "description": "",
+      "isLeagueLegal": true,
+      "isReaction": false,
+      "hasUses": true,
+      "uses": 0
+    },
+    "carriable": {
+      "quantity": 1,
+      "price": 0,
+      "description": ""
+    }
+  }
+}

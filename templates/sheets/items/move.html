@@ -1,0 +1,38 @@
+<form class="{{cssClass}} flexcol move-page" autocomplete="off">
+  <div class="header-details">
+    <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+    <h1 class="item-name">
+      {{item.name}}
+    </h1>
+  </div>
+
+  <div class="sheet-content item-content">
+    <div class="item-details two-column">
+      <div class="item-detail-sidebar">
+        <div class="item-detail-sidebar-item">
+          <label>Type</label>
+          <div class="item-detail-value inline-type {{data.type}}">{{data.type}}</div>
+        </div>
+        <div class="item-detail-sidebar-item">
+          <label>Accuracy</label>
+          <div class="item-detail-value">{{data.accuracy}}</div>
+        </div>
+        <div class="item-detail-sidebar-item">
+          <label>Frequency</label>
+          <div class="item-detail-value">{{data.frequency}}</div>
+        </div>
+        <div class="item-detail-sidebar-item">
+          <label>Damage</label>
+          <div class="item-detail-value">{{data.derived.damageTypeName}}</div>
+        </div>
+      </div>
+      <div class="item-details-row">
+        <label>Range</label>
+        <div class="item-description">{{data.range}}</div>
+        
+        <label>Effects</label>
+        <div class="item-description">{{data.effects}}</div>
+      </div>
+    </div>
+  </div>
+</form>

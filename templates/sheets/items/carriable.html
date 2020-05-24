@@ -1,0 +1,29 @@
+<form class="{{cssClass}} flexcol carriable-page" autocomplete="off">
+  <div class="header-details">
+    <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+    <h1 class="item-name">
+      <input name="name" type="text" value="{{item.name}}" placeholder="A New Feature"/>
+    </h1>
+  </div>
+
+  <div class="sheet-content item-content">
+    <div class="item-details two-column">
+      <div class="item-detail-sidebar">
+        <div class="item-detail-sidebar-item">
+          <label>Quantity</label>
+          <input name="data.quantity" type="text" value="{{data.quantity}}" placeholder="1"/>
+        </div>
+        <div class="item-detail-sidebar-item">
+          <label>Price</label>
+          <input name="data.price" type="text" value="{{data.price}}" placeholder="1"/>
+        </div>
+      </div>
+      <div class="carriable-description item-details-row">
+        <label>Description</label>
+        <div class="editor-container">
+          {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

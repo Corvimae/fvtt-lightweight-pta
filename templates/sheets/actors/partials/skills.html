@@ -1,0 +1,177 @@
+
+<div class="character-details-section">
+  <div class="header-details">
+    <ul class="header-detail-list">
+      <li class="header-detail-item">
+        <label>Age</label>
+        <input
+          name="data.background.age" 
+          type="text"
+          value="{{data.background.age}}"
+          data-dtype="Number"
+          placeholder="18"
+        />
+      </li>
+      <li class="header-detail-item">
+        <label>Gender</label>
+        <input
+          name="data.background.gender" 
+          type="text"
+          value="{{data.background.gender}}"
+          placeholder="?"
+        />
+      </li>
+      <li class="header-detail-item">
+        <label>Level</label>
+        <input
+          name="data.level" 
+          type="text"
+          value="{{data.level}}"
+          placeholder="?"
+        />
+      </li>
+      <li class="header-detail-item">
+        <label>Badges</label>
+        <input
+          name="data.details.badges" 
+          type="text"
+          value="{{data.details.badges}}"
+          data-dtype="Number"
+          placeholder="?"
+        />
+      </li>
+      <li class="header-detail-item">
+        <label>Height</label>
+        <input
+          name="data.background.height" 
+          type="text"
+          value="{{data.background.height}}"
+          placeholder="?"
+        />
+      </li>
+      <li class="header-detail-item">
+        <label>Weight</label>
+        <input
+          name="data.background.weight" 
+          type="text"
+          value="{{data.background.weight}}"
+          placeholder="?"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="header-details">
+  <ul class="header-detail-list">
+    <li class="header-detail-item">
+      <label>Overland</label>
+      <input
+        name="data.movement.overland" 
+        type="text"
+        value="{{data.movement.overland}}"
+        data-dtype="Number"
+        placeholder="5"
+      />
+    </li>
+    <li class="header-detail-item">
+      <label>Surface</label>
+      <input
+        name="data.movement.surface" 
+        type="text"
+        value="{{data.movement.surface}}"
+        data-dtype="Number"
+        placeholder="4"
+      />
+    </li>
+    <li class="header-detail-item">
+      <label>Underwater</label>
+      <input
+        name="data.movement.underwater" 
+        type="text"
+        value="{{data.movement.underwater}}"
+        data-dtype="Number"
+        placeholder="3"
+      />
+    </li>
+    <li></li>
+    <li class="header-detail-item"></li>
+    <li class="header-detail-item">
+      <label>Caught</label>
+      <input
+        name="data.details.caughtPokmeon" 
+        type="text"
+        value="{{data.details.caughtPokmeon}}"
+        data-dtype="Number"
+        placeholder="0"
+      />
+    </li>
+  </ul>
+</div>
+
+<ul class="skill-list">
+  <li class="skill-list-column">
+    <div class="skill-list-item">
+      <div class="skill-list-stat-header">
+        Attack
+      </div>
+      {{#each data.skills.atk.items as |skillData skill|}}
+      <div class="skill-row" data-skill="{{skill}}">
+        <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
+        <a class="skill-name rollable">{{skillData.skillName}}</a>
+        <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="skill-list-item">
+      <div class="skill-list-stat-header">
+        Defense
+      </div>
+      {{#each data.skills.def.items as |skillData skill|}}
+      <div class="skill-row" data-skill="{{skill}}">
+        <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
+        <a class="skill-name rollable">{{skillData.skillName}}</a>
+        <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="skill-list-item">
+      <div class="skill-list-stat-header">
+        Special Attack
+      </div>
+      {{#each data.skills.spatk.items as |skillData skill|}}
+      <div class="skill-row" data-skill="{{skill}}">
+        <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
+        <a class="skill-name rollable">{{skillData.skillName}}</a>
+        <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
+      </div>
+      {{/each}}
+    </div>
+  </li>
+  <li class="skill-list-column">
+    <div class="skill-list-item">
+      <div class="skill-list-stat-header">
+        Special Defense
+      </div>
+      {{#each data.skills.spdef.items as |skillData skill|}}
+      <div class="skill-row" data-skill="{{skill}}">
+        <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
+        <a class="skill-name rollable">{{skillData.skillName}}</a>
+        <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="skill-list-item">
+      <div class="skill-list-stat-header">
+        Speed
+      </div>
+      {{#each data.skills.spd.items as |skillData skill|}}
+      <div class="skill-row" data-skill="{{skill}}">
+        <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
+        <a class="skill-name rollable">{{skillData.skillName}}</a>
+        <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
+      </div>
+      {{/each}}
+    </div>
+  </li>
+</ul>

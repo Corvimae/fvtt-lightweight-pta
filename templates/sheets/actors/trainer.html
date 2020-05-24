@@ -1,0 +1,82 @@
+<form class="{{cssClass}} flexcol trainer-page" autocomplete="off">
+  {{!-- Header --}}
+  <div class="header-details no-bottom-border">
+    <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+
+    <div class="header-data">
+      <div class="name-and-health">
+        <h1 class="char-name">
+          <input name="name" type="text" value="{{actor.name}}" placeholder="A New Trainer"/>
+        </h1>
+
+        <div class="char-health">
+          <div class="attribute-value">
+            <input
+              name="data.resources.health.value"
+              type="text"
+              value="{{data.resources.health.value}}"
+              data-dtype="Number"
+              placeholder="10"
+            />
+          </div>
+          <div class="health-maximum">
+            <span class="sep"> / </span>
+            <label>{{data.derived.maxHP}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="char-classes">
+        <input name="data.details.classes" type="text" value="{{data.details.classes}}" placeholder="Pokemon Trainer"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-details stats no-bottom-border">
+    <ul class="header-detail-list">
+      {{#each data.stats as |stat id|}}
+      <li class="stat header-detail-item" data-ability="{{id}}">
+        <label>{{stat.shortName}}</label>
+        <div class="stat-values">
+          <input
+            name="data.stats.{{id}}.value" 
+            type="text"
+            value="{{stat.value}}"
+            data-dtype="Number"
+            placeholder="10"
+          />
+          <div class="modifier-value {{stat.modifierCSSClass}}">
+            {{numberFormat stat.modifier decimals=0 sign=true}}
+          </div>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  
+  {{!-- Navigation --}}
+  <nav class="sheet-navigation tabs" data-group="primary">
+    <a class="item" data-tab="skills">Skills & Details</a>
+    <a class="item" data-tab="features">Features</a>
+    <a class="item" data-tab="inventory">Inventory</a>
+    <a class="item" data-tab="background">League Application</a>
+  </nav>
+
+  <div class="sheet-content">
+    {{!-- Skills --}}
+    <div class="tab skills" data-group="primary" data-tab="skills">
+      {{> "systems/pta/templates/sheets/actors/partials/skills.html"}}
+    </div>
+
+    <div class="tab skills" data-group="primary" data-tab="background">
+      {{> "systems/pta/templates/sheets/actors/partials/background.html"}}
+    </div>
+
+    <div class="tab features flexcol" data-group="primary" data-tab="features">
+      {{> "systems/pta/templates/sheets/actors/partials/features.html"}}
+    </div>
+
+    <div class="tab features flexcol" data-group="primary" data-tab="inventory">
+      {{> "systems/pta/templates/sheets/actors/partials/inventory.html"}}
+    </div>
+  </div>
+</form>

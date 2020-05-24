@@ -1,0 +1,19 @@
+<div class='pokemon-move'>
+  <div class='pokemon-move-name'>{{speaker.alias}} uses {{name}}!</div>
+  <div class='pokemon-move-data'>
+    <div>{{range}}</div>
+    <div>{{frequency}}</div>
+  </div>
+  {{#if hasAccuracyCheck}}
+  <div class='pokemon-move-ac'>Rolled [[{{accuracyCheck}}]] to hit (AC: {{accuracy}})</div>
+  {{/if}}
+  {{#if hasValidAttackRoll}}
+  {{#if isCrit}}
+  <div class='pokemon-move-crit'>A critical hit!</div>
+  {{/if}}
+  <div class='pokemon-move-damage'>Deals [[{{#if isCrit}} {{critDamage}} {{else}} {{damage}} {{/if}}]] {{attackTypeName}} <span class="inline-type {{type}}">{{type}}</span> damage from damage dice!</div>
+  {{/if}}
+  <div class='pokemon-move-effects'>
+    {{effects}}
+  </div>
+</div>

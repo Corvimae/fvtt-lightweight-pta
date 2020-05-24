@@ -1,0 +1,159 @@
+<div class="league-application">
+  <h3>Frontier League Trainer Application</h3>
+
+  <div class="league-application-prompt">
+    <label>Date of Birth</label>
+    <input
+      name="data.background.dateOfBirth" 
+      type="text"
+      value="{{data.background.dateOfBirth}}"
+      placeholder=""
+    />
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Pronouns</label>
+    <input
+      name="data.background.pronouns" 
+      type="text"
+      value="{{data.background.pronouns}}"
+      placeholder=""
+    />
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Pronunciation of Name</label>
+    <div class="help-text">
+      If you have any instructions for pronouncing your name, please write them below.
+    </div>
+    <div class="league-application-editor">
+      {{editor content=data.background.pronunciationOfName target="data.background.pronunciationOfName" button=true owner=owner editable=editable}}
+    </div>
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Region of Residence</label>
+    <div class="help-text">
+      Please enter the region of your most recent permanent residence.
+    </div>
+    <input
+      name="data.background.regionOfResidence" 
+      type="text"
+      value="{{data.background.regionOfResidence}}"
+      placeholder=""
+    />
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Personal Bio</label>
+    <div class="help-text">
+      Describe yourself in 2-5 sentences. This bio may be used during broadcasts and in official
+      promotional material.
+    </div>
+    <div class="league-application-editor">
+      {{editor content=data.background.personalBio target="data.background.personalBio" button=true owner=owner editable=editable}}
+    </div>
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Motive for Interest</label>
+    <div class="help-text">
+      What made you want to become a Pokémon trainer?
+    </div>
+    <div class="league-application-editor">
+      {{editor content=data.background.motive target="data.background.motive" button=true owner=owner editable=editable}}
+    </div>
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Personal Aspirational Figure</label>
+    <div class="help-text">
+      Who is your biggest role model?
+    </div>
+    <div class="league-application-editor">
+      {{editor content=data.background.rolemodel target="data.background.roleModel" button=true owner=owner editable=editable}}
+    </div>
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Personal Aspiration</label>
+    <div class="help-text">
+      What is your goal on Frontier Island?
+    </div>
+    <div class="league-application-editor">
+      {{editor content=data.background.aspiration target="data.background.aspiration" button=true owner=owner editable=editable}}
+    </div>
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Self-Identified Vector of Individuality</label>
+    <div class="help-text">
+      What is your "Signature Something"?
+    </div>
+    <div class="league-application-editor">
+      {{editor content=data.background.signatureSomething target="data.background.signatureSomething" button=true owner=owner editable=editable}}
+    </div>
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Visualized Ideal</label>
+    <div class="help-text">
+      What is your biggest dream?
+    </div>
+    <div class="league-application-editor">
+      {{editor content=data.background.dream target="data.background.dream" button=true owner=owner editable=editable}}
+    </div>
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Tint of Choice</label>
+    <div class="help-text">
+      What is your favorite color?
+    </div>
+    <input
+      name="data.background.favoriteColor" 
+      type="text"
+      value="{{data.background.favoriteColor}}"
+      placeholder=""
+    />
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Preferred Pokémon</label>
+    <div class="help-text">
+      What is your favorite Pokémon?
+    </div>
+    <input
+      name="data.background.favoritePokemon" 
+      type="text"
+      value="{{data.background.favoritePokemon}}"
+      placeholder=""
+    />
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Affiliated Type</label>
+    <div class="help-text">
+      What Pokémon type do you most identify with?
+    </div>
+    <input
+      name="data.background.favoriteType" 
+      type="text"
+      value="{{data.background.favoriteType}}"
+      placeholder=""
+    />
+  </div>
+
+  <div class="league-application-prompt">
+    <label>Dietary Preference</label>
+    <div class="help-text">
+      What is your favorite food?
+    </div>
+    <input
+      name="data.background.favoriteFood" 
+      type="text"
+      value="{{data.background.favoriteFood}}"
+      placeholder=""
+    />
+  </div>
+</div>

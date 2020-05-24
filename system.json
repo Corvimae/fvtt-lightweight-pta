@@ -1,0 +1,19 @@
+{
+  "name": "pta",
+  "title": "Lightweight PTA",
+  "description": "Some scaffolding for PTA in Foundry",
+  "version": "1.0.0",
+  "author": "Corvimae",
+  "esmodules": [
+    "modules/pta.js"
+  ],
+  "styles": [
+    "styles/pta.css"
+  ],
+  "initiative": "@spd",
+  "gridDistance": 1,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "resources.health",
+  "url": "https://github.com/corvimae/foundry-pta",
+  "manifest": "https://raw.githubusercontent.com/corvimae/foundry-pta/master/module.json"
+}
