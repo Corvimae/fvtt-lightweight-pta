@@ -16,5 +16,5 @@
   "primaryTokenAttribute": "resources.health",
   "url": "https://github.com/corvimae/foundry-pta",
   "manifest": "https://raw.githubusercontent.com/corvimae/foundry-pta/master/system.json",
-  "download": "https://github.com/Corvimae/foundry-pta/archive/1.0.0.zip",
+  "download": "https://github.com/Corvimae/foundry-pta/archive/1.0.0.zip"
 }
