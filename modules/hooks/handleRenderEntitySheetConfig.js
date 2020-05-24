@@ -1,4 +1,4 @@
-import { normalizePokemonName } from '../utils/pokemon-utils.js';
+import { normalizePokemonName, fetchPokemonData } from '../utils/pokemon-utils.js';
 
 export function renderEntitySheetConfig(sheet, _element, entity) {
   if(entity.object.type === 'pokemon' && entity.sheetClasses.indexOf('pta.PokemonManagerSheet') !== -1) {
@@ -38,15 +38,15 @@ export function renderEntitySheetConfig(sheet, _element, entity) {
       // Get Pokemon data from the API.
 
       if(sheetIDValue !== 0) {
-        const pokemonDataResponse = await fetch(`https://pokemon.maybreak.com/api/v1/pokemon/${sheetIDValue}`);
-        const pokemonData = await pokemonDataResponse.json();
+        const pokemonData = await fetchPokemonData(sheetIDValue);
         
         updatedData.name = pokemonData.name;
+        updatedData['token.name'] = pokemonData.name;
 
         const dataModule = game.modules.get('pokemon-manager-data');
         if (dataModule?.active) {
-          updatedData.img = `modules/pokemon-manager-data/sprites/${normalizePokemonName(pokemonData.species.name, pokemonData.species.id)}.png`;
-          updatedData['token.img'] =  `modules/pokemon-manager-data/sprites/webm/${normalizePokemonName(pokemonData.species.name, pokemonData.species.id)}.webm`;
+          updatedData.img = `modules/pokemon-manager-data/assets/sprites/${normalizePokemonName(pokemonData.species.name, pokemonData.species.id)}.png`;
+          updatedData['token.img'] =  `modules/pokemon-manager-data/assets/sprites/webm/${normalizePokemonName(pokemonData.species.name, pokemonData.species.id)}.webm`;
         }
       }
 

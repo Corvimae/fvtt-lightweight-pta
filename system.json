@@ -10,7 +10,7 @@
   "styles": [
     "styles/pta.css"
   ],
-  "initiative": "@spd",
+  "initiative": "@stats.spd.value",
   "gridDistance": 1,
   "gridUnits": "m",
   "primaryTokenAttribute": "resources.health",

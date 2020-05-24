@@ -767,3 +767,22 @@ button.import-pmd {
 .no-attached-sheet-message {
   padding: 0.5rem;
 }
+
+.add-moves-to-hotbar {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  width: max-content;
+  appearance: none;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0.25rem;
+  z-index: 200;
+}
+
+.add-moves-to-hotbar:hover {
+  background-color: #000;
+}

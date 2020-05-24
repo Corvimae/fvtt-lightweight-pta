@@ -1,10 +1,9 @@
 export async function rollMetronome() {
-  const compendium = game.packs.find(x => x.collection === 'world.pokemon-moves');
-  const options = await compendium.getData();
+  const allMoves = game.items.filter(item => item.data.type === 'move');
 
-  const {_id: id} = options.index[Math.floor(Math.random() * options.index.length)];
+  const {_id: id} = allMoves[Math.floor(Math.random() * allMoves.length)];
 
-  const moveMacro = await compendium.getEntity(id);
+  const selectedMove = await game.items.get(id);
 
   await ChatMessage.create({
     content: `<div class="pokemon-move"><div class="pokemon-move-name">${ChatMessage.getSpeaker().alias} uses Metronome!</div></div>`,
@@ -12,7 +11,18 @@ export async function rollMetronome() {
     type: CONST.CHAT_MESSAGE_TYPES.OTHER,
   });
 
-  moveMacro.execute();
+  console.log(selectedMove);
+
+  game.pta.macros.rollMove(
+    selectedMove.data.name,
+    selectedMove.data.data.type,
+    selectedMove.data.data.frequency,
+    selectedMove.data.data.range,
+    selectedMove.data.data.damage,
+    selectedMove.data.data.accuracy,
+    selectedMove.data.data.attackType,
+    selectedMove.data.data.effects.replace(/'/g, '\\\''),
+  );
 }
 
 export async function rollMove(name, type, frequency, range, damage, accuracy, attackType, effects) {
@@ -52,9 +62,9 @@ export async function rollMove(name, type, frequency, range, damage, accuracy, a
 export function buildCommandForMove(move) {
   switch(move.name) {
     case 'Metronome':
-      return 'game.pokemon.rollMetronome()';
+      return 'game.pta.macros.rollMetronome()';
       
     default:
-      return `game.pokemon.rollMove('${move.name}', '${move.type}', '${move.frequency}', '${move.range}', '${move.damage}', ${move.accuracy}, ${move.attackType}, '${move.effects}')`;
+      return `game.pta.macros.rollMove('${move.name}', '${move.data.type}', '${move.data.frequency}', '${move.data.range}', '${move.data.damage}', ${move.data.accuracy}, ${move.data.attackType}, '${move.data.effects.replace(/'/g, '\\\'')}')`;
   }
 }

@@ -1,3 +1,6 @@
+import { fetchPokemonData } from "../utils/pokemon-utils.js";
+import { createMoveAtHotbarPosition } from '../hooks/handleItemDrop.js';
+
 export default class PokemonManagerSheet extends ActorSheet {
   constructor(...args) {
     super(...args);
@@ -16,6 +19,10 @@ export default class PokemonManagerSheet extends ActorSheet {
 
   get template() {
     return 'systems/pta/templates/sheets/actors/pokemonManager.html';
+  }
+
+  activateListeners(html) {
+    html.find('.add-moves-to-hotbar').click(this.handleAddMovesToHotbar.bind(this));
   }
 
   getData() {  
@@ -39,5 +46,18 @@ export default class PokemonManagerSheet extends ActorSheet {
         },
       },
     };
+  }
+
+  async handleAddMovesToHotbar(event) {
+    event.preventDefault();
+
+    const pokemonData = await fetchPokemonData(this.actor.data.data.sheetID);
+
+    pokemonData.moves.forEach((move, index) => {
+      const relevantMoveItem = game.items.find(item => item.data.type === 'move' && item.data.flags.pta?.dbId === move.definition.id);
+
+      console.log(relevantMoveItem);
+      if (relevantMoveItem) createMoveAtHotbarPosition(relevantMoveItem, index + 1);
+    });
   }
 }
