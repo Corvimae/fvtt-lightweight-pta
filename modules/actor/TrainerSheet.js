@@ -145,7 +145,7 @@ export default class TrainerSheet extends ActorSheet {
             [skill]: {
               ...skillData,
               icon: `<i class="${skillData.trained ? 'fas fa-check' : 'far fa-circle'}"></i>`,
-              modifier: skillData.trained ? 2 + data.stats[stat].modifier : Math.min(data.stats[stat].modifier, data.derived.stab),
+              modifier: skillData.trained ? 2 + data.stats[stat].modifier : Math.min(data.stats[stat].modifier, 1 + data.derived.stab),
               skillName: SKILL_NAMES[skill],
             },
           }), {}),
