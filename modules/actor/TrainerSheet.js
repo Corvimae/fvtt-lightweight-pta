@@ -66,13 +66,7 @@ export default class TrainerSheet extends ActorSheet {
   }
 
   insertDerivedData(data) {
-    return this.processItems(this.insertDerivedSkillData(this.insertDerivedStatData({
-      ...data,
-      derived: {
-        stab: Math.max(1, Math.floor(data.level / 5)),
-        maxHP: data.stats.hp.value * 4 + data.level * 4,
-      },
-    })));
+    return this.processItems(this.insertDerivedSkillData(this.insertDerivedStatData(data)));
   }
 
   processItems(data) {
@@ -145,7 +139,7 @@ export default class TrainerSheet extends ActorSheet {
             [skill]: {
               ...skillData,
               icon: `<i class="${skillData.trained ? 'fas fa-check' : 'far fa-circle'}"></i>`,
-              modifier: skillData.trained ? 2 + data.stats[stat].modifier : Math.min(data.stats[stat].modifier, 1 + data.derived.stab),
+              modifier: skillData.trained ? 2 + data.stats[stat].modifier : Math.min(data.stats[stat].modifier, 1 + data.stab),
               skillName: SKILL_NAMES[skill],
             },
           }), {}),

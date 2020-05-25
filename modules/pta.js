@@ -12,6 +12,7 @@ import { POKEMON_STRING } from './utils/constants.js';
 import { restartPokemonHealthSyncInterval } from './processes/syncPokemonHealthValues.js';
 import { getInitiativeFormula } from './utils/getInitiativeFormula.js';
 import { migrateActorData } from './migrations/migrate.js';
+import { PTAActor } from './actor/PTAActor.js';
 
 Hooks.once('init', function() {
   console.info('[PTA] Initializing Lightweight PTA...');
@@ -19,6 +20,8 @@ Hooks.once('init', function() {
   CONFIG.debug.pta = {
     logSync: false,
   }
+
+  CONFIG.Actor.entityClass = PTAActor;
 
   game.settings.register('pta', 'healthSyncInterval', {
     name: 'Health Sync Interval',
