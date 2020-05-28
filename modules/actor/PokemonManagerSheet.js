@@ -38,14 +38,20 @@ export default class PokemonManagerSheet extends ActorSheet {
     return {
       editable: this.isEditable,
       owner: this.entity.owner,
-      actor: this.actor,
       data: {
-        ...this.actor.data.data,
+        id: this.actor.id,
+        sheetID: this.actor.data.data.sheetID,
         derived: {
           hasAttachedSheet,
         },
       },
     };
+  }
+
+  async render(force, options) {
+    if (!force) return;
+    
+    return super.render(force, options);
   }
 
   async handleAddMovesToHotbar(event) {

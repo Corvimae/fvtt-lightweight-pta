@@ -1,3 +1,6 @@
+import { syncPokemonStatValues } from '../processes/syncPokemonStatValues.js';
+import { calculateCombatStageMultiplier } from '../utils/pokemon-utils.js';
+
 export async function rollMetronome() {
   const allMoves = game.items.filter(item => item.data.type === 'move');
 
@@ -26,15 +29,25 @@ export async function rollMetronome() {
 }
 
 export async function rollMove(name, type, frequency, range, damage, accuracy, attackType, effects) {
+  const speaker = ChatMessage.getSpeaker();
+
+  let actor = game.actors.get(speaker.actor);
+
+  try {
+    await syncPokemonStatValues(actor.data.data.sheetID);
+  } catch (error) {
+    ui.notifications.warn('Unable to sync Pokemon data. Move damage may not be correct.');
+    console.warn('[PTA] Unable to sync Pokemon data for move macro', error);
+  }
+
+  // Get updated actor data.
+  actor = game.actors.get(speaker.actor);
+
   const accuracyCheck = new Die(20);
   
   accuracyCheck.roll(1);
 
   const [_, dice, dieSize, flat] = /([0-9]+)d([0-9]+)\s*\+\s*([0-9]+)/.exec(damage) ?? [0, 0, 0, 0];
-
-  const speaker = ChatMessage.getSpeaker();
-
-  const actor = game.actors.get(speaker.actor);
 
   const content = await renderTemplate('/systems/pta/templates/macros/move.html', {
     name,
@@ -51,6 +64,7 @@ export async function rollMove(name, type, frequency, range, damage, accuracy, a
     hasAccuracyCheck: range.indexOf('No Target') === -1 || attackType !== 2,
     accuracyCheck: accuracyCheck.results[0],
     relevantStatValue: attackType === 0 ? '@stats.atk.value' : '@stats.spatk.value',
+    combatStageMultiplier: calculateCombatStageMultiplier(attackType === 0 ? actor.data.data.stats.atk.combatStages.value : actor.data.data.stats.spatk.combatStages.value),
     isCrit: accuracyCheck.results[0] === 20,
     isStab: actor.data.data.type1 === type || actor.data.data.type2 === type,
     speaker,

@@ -43,3 +43,7 @@ export function calculateLevel(experience) {
 
   return index === -1 ? 100 : index;
 }
+
+export function calculateCombatStageMultiplier(stages) {
+  return stages === 0 ? 1 : (stages < 0 ? 1 - (Math.abs(stages) * 0.125) : 1 + (stages * 0.25));
+}

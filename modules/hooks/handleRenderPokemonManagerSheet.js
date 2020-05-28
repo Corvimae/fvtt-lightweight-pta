@@ -3,7 +3,7 @@ import { fetchPokemonData } from "../utils/pokemon-utils.js";
 const UPDATE_DELAY = 1000 * 30; // 30 seconds
 
 export async function handleRenderPokemonManagerSheet(sheet, _element, entity) {
-  const actor = game.actors.get(entity.actor._id);
+  const actor = game.actors.get(entity.data.id);
 
   if (Date.now() - actor.data.flags.pta?.lastUpdated < UPDATE_DELAY) return;
 
