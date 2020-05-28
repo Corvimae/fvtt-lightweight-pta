@@ -1,6 +1,8 @@
 import { fetchPokemonData } from '../utils/pokemon-utils.js';
 
 export function restartPokemonStatSyncInterval() {
+  if (!game.user.isGM) return;
+
   if (game.pta.statSyncIntervalId) clearInterval(game.pta.statSyncIntervalId);
 
   syncAllPokemonStatValues();
