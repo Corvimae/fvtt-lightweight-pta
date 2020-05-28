@@ -1,26 +1,7 @@
+import { migrateActor as migrateActor1_0_5 } from './steps/migrate.1.0.5.js'
+import { migrateActor as migrateActor1_0_8 } from './steps/migrate.1.0.8.js'
+
 export function migrateActorData(actor) {
-  if(actor.data.type === 'trainer' && !actor.data.data.skills.hp) {
-    actor.update({
-      data: {
-        skills: {
-          hp: {
-            items: {
-              breathless: {
-                trained: false
-              },
-              fasting: {
-                trained: false
-              },
-              endurance: {
-                trained: false
-              },
-              resistant: {
-                trained: false
-              }
-            }
-          }
-        }
-      }
-    });
-  }
+  migrateActor1_0_5(actor);
+  migrateActor1_0_8(actor);
 }

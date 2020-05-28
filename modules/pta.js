@@ -9,7 +9,7 @@ import PokemonManagerSheet from './actor/PokemonManagerSheet.js';
 import { renderEntitySheetConfig } from './hooks/handleRenderEntitySheetConfig.js';
 import { handleRenderPokemonManagerSheet } from './hooks/handleRenderPokemonManagerSheet.js';
 import { POKEMON_STRING } from './utils/constants.js';
-import { restartPokemonHealthSyncInterval } from './processes/syncPokemonHealthValues.js';
+import { restartPokemonStatSyncInterval } from './processes/syncPokemonStatValues.js';
 import { getInitiativeFormula } from './utils/getInitiativeFormula.js';
 import { migrateActorData } from './migrations/migrate.js';
 import { PTAActor } from './actor/PTAActor.js';
@@ -23,8 +23,8 @@ Hooks.once('init', function() {
 
   CONFIG.Actor.entityClass = PTAActor;
 
-  game.settings.register('pta', 'healthSyncInterval', {
-    name: 'Health Sync Interval',
+  game.settings.register('pta', 'statSyncInterval', {
+    name: 'Stat Sync Interval',
     hint: `The number of seconds to wait before updating ${POKEMON_STRING} health values with their values in Pokemon Manager.`,
     scope: 'world',
     config: true,
@@ -35,12 +35,12 @@ Hooks.once('init', function() {
       step: 1,
     },
     default: 20,
-    onChange: restartPokemonHealthSyncInterval,
+    onChange: restartPokemonStatSyncInterval,
   });
 
   game.settings.register('pta', 'rollDamageDice', {
-    name: 'Roll Damage Dice',
-    hint: `If enabled, ${POKEMON_STRING} move macros will roll damage dice as well.`,
+    name: 'Roll Damage',
+    hint: `If enabled, ${POKEMON_STRING} move macros will roll damage as well.`,
     scope: 'client',
     config: true,
     type: Boolean,
@@ -48,8 +48,8 @@ Hooks.once('init', function() {
   });
 
   Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('pta', TrainerSheet, { types: ['trainer'], makeDefault: true });
-  Actors.registerSheet('pta', PokemonManagerSheet, { types: ['pokemon'], makeDefault: false });
+  Actors.registerSheet('pta', TrainerSheet, { types: ['trainer'], makeDefault: false });
+  Actors.registerSheet('pta', PokemonManagerSheet, { types: ['pokemon'], makeDefault: true });
   
   Items.registerSheet('pta', FeatureSheet, { types: ['feature'], makeDefault: true });
   Items.registerSheet('pta', CarriableSheet, { types: ['carriable'], makeDefault: true });
@@ -58,7 +58,7 @@ Hooks.once('init', function() {
   Combat.prototype._getInitiativeFormula = getInitiativeFormula;
 
   game.pta = {
-    healthSyncIntervalId: undefined,
+    statSyncIntervalId: undefined,
     macros: {
       rollMetronome,
       rollMove
@@ -81,7 +81,7 @@ Hooks.on('renderEntitySheetConfig', renderEntitySheetConfig);
 Hooks.on('renderPokemonManagerSheet', handleRenderPokemonManagerSheet);
 
 Hooks.once('ready', () => {
-  restartPokemonHealthSyncInterval();
+  restartPokemonStatSyncInterval();
 
   game.actors.forEach(migrateActorData);
 });

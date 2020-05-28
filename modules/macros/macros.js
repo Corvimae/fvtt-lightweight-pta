@@ -32,6 +32,10 @@ export async function rollMove(name, type, frequency, range, damage, accuracy, a
 
   const [_, dice, dieSize, flat] = /([0-9]+)d([0-9]+)\s*\+\s*([0-9]+)/.exec(damage) ?? [0, 0, 0, 0];
 
+  const speaker = ChatMessage.getSpeaker();
+
+  const actor = game.actors.get(speaker.actor);
+
   const content = await renderTemplate('/systems/pta/templates/macros/move.html', {
     name,
     type,
@@ -46,8 +50,10 @@ export async function rollMove(name, type, frequency, range, damage, accuracy, a
     hasValidAttackRoll: dice !== 0 && dieSize !== 0 && flat !== 0 && attackType !== 2 && game.settings.get('pta', 'rollDamageDice'),
     hasAccuracyCheck: range.indexOf('No Target') === -1 || attackType !== 2,
     accuracyCheck: accuracyCheck.results[0],
+    relevantStatValue: attackType === 0 ? '@stats.atk.value' : '@stats.spatk.value',
     isCrit: accuracyCheck.results[0] === 20,
-    speaker: ChatMessage.getSpeaker(),
+    isStab: actor.data.data.type1 === type || actor.data.data.type2 === type,
+    speaker,
   });
 
   

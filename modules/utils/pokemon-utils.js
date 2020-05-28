@@ -43,7 +43,3 @@ export function calculateLevel(experience) {
 
   return index === -1 ? 100 : index;
 }
-
-export function calculateMaxHealth(pokemonData) {
-  return calculateLevel(pokemonData.experience) + 10 + (pokemonData.stats.base.hp + pokemonData.stats.added.hp) * 3;
-}
