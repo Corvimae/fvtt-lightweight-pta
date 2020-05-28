@@ -16,10 +16,9 @@ export async function syncAllPokemonStatValues() {
 
   const pokemonWithSheets = game.actors.entries.filter(actor => actor.data.type === 'pokemon' && actor.data.data.sheetID);
 
-  const pokemonDataRequests = pokemonWithSheets.map(async actor => await fetchPokemonData(actor.data.data.sheetID));
-  const pokemonData = await Promise.all(pokemonDataRequests);
+  const pokemonData = await fetch(`https://pokemon.maybreak.com/api/v2/pokemon/mass?ids=${pokemonWithSheets.map(actor => actor.data.data.sheetID).join(',')}`);
     
-  const pokemonDataBySheetId = pokemonData.reduce((acc, data) => ({
+  const pokemonDataBySheetId = (await pokemonData.json()).reduce((acc, data) => ({
     ...acc,
     [data.id]: data,
   }), {});

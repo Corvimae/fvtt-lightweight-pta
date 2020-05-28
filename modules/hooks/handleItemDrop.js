@@ -10,6 +10,9 @@ export async function createMoveAtHotbarPosition(item, position) {
     type: 'script',
     img: item.img,
     command: buildCommandForMove(item.data),
+    flags: {
+      'pta.moveID': item.id,
+    },
   });
 
   game.user.assignHotbarMacro(macro, position);
