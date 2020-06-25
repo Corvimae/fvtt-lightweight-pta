@@ -6,6 +6,7 @@ import MoveSheet from './item/MoveSheet.js';
 import { rollMove, rollMetronome } from './macros/macros.js';
 import { handleItemDrop } from './hooks/handleItemDrop.js';
 import PokemonManagerSheet from './actor/PokemonManagerSheet.js';
+import TokenSheet from './actor/TokenSheet.js';
 import { renderEntitySheetConfig } from './hooks/handleRenderEntitySheetConfig.js';
 import { handleRenderPokemonManagerSheet } from './hooks/handleRenderPokemonManagerSheet.js';
 import { POKEMON_STRING } from './utils/constants.js';
@@ -50,6 +51,7 @@ Hooks.once('init', function() {
   Actors.unregisterSheet('core', ActorSheet);
   Actors.registerSheet('pta', TrainerSheet, { types: ['trainer'], makeDefault: false });
   Actors.registerSheet('pta', PokemonManagerSheet, { types: ['pokemon'], makeDefault: true });
+  Actors.registerSheet('pta', TokenSheet, { types: ['token'], makeDefault: false });
   
   Items.registerSheet('pta', FeatureSheet, { types: ['feature'], makeDefault: true });
   Items.registerSheet('pta', CarriableSheet, { types: ['carriable'], makeDefault: true });
@@ -64,7 +66,6 @@ Hooks.once('init', function() {
       rollMove
     },
   };
-
 
   preloadTemplates();
 

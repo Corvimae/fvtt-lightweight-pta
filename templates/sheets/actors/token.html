@@ -1,0 +1,36 @@
+<form class="{{cssClass}} token-page" autocomplete="off">
+  <div class="header-details no-bottom-border">
+    <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+    <div class="header-data">
+      <div class="name-and-health">
+        <h1 class="char-name">
+          <input name="name" type="text" value="{{actor.name}}" placeholder="Token"/>
+        </h1>
+
+        <div class="char-health">
+          <div class="attribute-value">
+            <input
+              name="data.resources.health.value"
+              type="text"
+              value="{{data.resources.health.value}}"
+              data-dtype="Number"
+              placeholder="10"
+            />
+          </div>
+          <div class="health-maximum">
+            <span class="sep"> / </span>
+          </div>
+          <div class="attribute-value">
+            <input
+              name="data.resources.health.max"
+              type="text"
+              value="{{data.resources.health.max}}"
+              data-dtype="Number"
+              placeholder="10"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

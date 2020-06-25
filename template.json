@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["trainer", "pokemon"],
+    "types": ["trainer", "pokemon", "token"],
     "templates": {
       "common": {
         "level": 1,
@@ -196,6 +196,9 @@
       "experience": 0,
       "type1": "None",
       "type2": "None"
+    },
+    "token": {
+      "templates": ["common"]
     }
   },
   "Item": {

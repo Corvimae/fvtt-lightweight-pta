@@ -55,7 +55,7 @@ export async function rollMove(name, type, frequency, range, damage, accuracy, a
     frequency,
     range,
     damage,
-    critDamage:`${dice * 2}d${dieSize} + ${flat * 2}`,
+    critDamage: `${dice * 2}d${dieSize} + ${flat * 2}`,
     accuracy,
     effects,
     attackTypeName: attackType === 0 ? 'Physical' : 'Special',
