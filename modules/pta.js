@@ -12,7 +12,7 @@ import { handleRenderPokemonManagerSheet } from './hooks/handleRenderPokemonMana
 import { POKEMON_STRING } from './utils/constants.js';
 import { restartPokemonStatSyncInterval } from './processes/syncPokemonStatValues.js';
 import { getInitiativeFormula } from './utils/getInitiativeFormula.js';
-import { migrateActorData } from './migrations/migrate.js';
+import { migrateActorData, migrateItemData } from './migrations/migrate.js';
 import { PTAActor } from './actor/PTAActor.js';
 
 Hooks.once('init', function() {
@@ -85,4 +85,9 @@ Hooks.once('ready', () => {
   restartPokemonStatSyncInterval();
 
   game.actors.forEach(migrateActorData);
+  game.items.forEach(migrateItemData);
+
+  game.actors.forEach(actor => {
+    actor.items.forEach(migrateItemData);
+  });
 });

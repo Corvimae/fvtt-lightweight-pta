@@ -62,7 +62,6 @@ export default class PokemonManagerSheet extends ActorSheet {
     pokemonData.moves.forEach((move, index) => {
       const relevantMoveItem = game.items.find(item => item.data.type === 'move' && item.data.flags.pta?.dbId === move.definition.id);
 
-      console.log(relevantMoveItem);
       if (relevantMoveItem) createMoveAtHotbarPosition(relevantMoveItem, index + 1);
     });
   }

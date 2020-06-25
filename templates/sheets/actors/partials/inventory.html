@@ -12,23 +12,29 @@
 </div>
 
 <div class="inventory-list">
+  {{#each data.carriables as |carriables category|}}
   <div class="list-subheader">
-    <div class="inventory-list-subheader-name with-divider">Inventory</div>
+    <div class="inventory-list-subheader-name with-divider">{{category}}</div>
     <div class="list-subheader-column-name">Quantity</div>
-    <a class="item-create add-carriable" title="Add Feature">
+    <a class="item-create add-carriable" title="Add Inventory Item">
       <i class="fa fa-plus"></i>
       Add
     </a>
   </div>
-  {{#each data.carriables as |carriable|}}
+  {{#each carriables as |carriable|}}
   <div class="item grid-row" data-item-id="{{carriable._id}}">
     <div class="item-list-icon" style="background-image: url({{carriable.img}})"></div>
     <a class="item-list-name">{{carriable.name}}</a>
-    <div class="item-value">
-      {{carriable.data.quantity}}
+    <div class="item-value item-quantity">
+      <input
+        type="text"
+        value="{{carriable.data.quantity}}"
+        data-dtype="Number"
+        placeholder="0"
+      />
     </div>
     <div class="item-actions item-value">
-      {{#if ../owner}}
+      {{#if ../../owner}}
       <div class="item-controls">
         <a class="item-control edit-item" title='Edit'>
           <i class="fas fa-edit"></i>
@@ -40,5 +46,6 @@
       {{/if}}
     </div>
   </div>
+  {{/each}}
   {{/each}}
 </div>

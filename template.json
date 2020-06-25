@@ -232,6 +232,7 @@
     },
     "carriable": {
       "quantity": 1,
+      "category": "Miscellaneous",
       "price": 0,
       "description": ""
     }

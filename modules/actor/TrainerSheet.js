@@ -51,6 +51,8 @@ export default class TrainerSheet extends ActorSheet {
 
       html.find('.item-uses input').click(ev => ev.target.select()).change(this.handleUsesChange.bind(this));
 
+      html.find('.item-quantity input').click(ev => ev.target.select()).change(this.handleCarriableQuantityChange.bind(this));
+
       html.find('.add-class').click(this.handleAddClass.bind(this));
 
       html.find('.restore-feature-uses').click(this.handleRestoreFeatureUses.bind(this));
@@ -94,7 +96,13 @@ export default class TrainerSheet extends ActorSheet {
       };
     }, {});
 
-    const carriables = items.filter(item => item.type === 'carriable');
+    const carriables = items.filter(item => item.type === 'carriable').reduce((acc, carriable) => {
+      const category = carriable.data.category?.trim().length > 0 ? carriable.data.category : '(No category)';    
+      return {
+        ...acc,
+        [category]: [...(acc[category] ?? []), carriable],
+      };
+    }, {});
 
     return {
       ...data,
@@ -245,6 +253,18 @@ export default class TrainerSheet extends ActorSheet {
     event.target.value = uses;
 
     return item.update({ 'data.uses': uses });
+  }
+
+  handleCarriableQuantityChange(event) {
+    event.preventDefault();
+
+    const itemId = event.currentTarget.closest('.item').getAttribute('data-item-id');
+    const item = this.actor.getOwnedItem(itemId);
+    const quantity = parseInt(event.target.value, 10);
+    
+    event.target.value = quantity;
+
+    return item.update({ 'data.quantity': quantity });
   }
 
   handleRestoreFeatureUses(event) {

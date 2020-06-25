@@ -539,7 +539,8 @@
   text-align: center;
 }
 
-.item-uses input {
+.item-uses input,
+.item-quantity input {
   width: 1.5rem;
   text-align: center;
 }
@@ -581,11 +582,6 @@
   grid-template-columns: 8rem 1fr;
   align-self: stretch;
   flex-grow: 1;
-}
-
-.carriable-page .profile {
-  height: 3.5rem;
-  width: 3.5rem;
 }
 
 .profile + .item-name {

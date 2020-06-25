@@ -7,7 +7,7 @@ export async function handleRenderPokemonManagerSheet(sheet, _element, entity) {
 
   if (Date.now() - actor.data.flags.pta?.lastUpdated < UPDATE_DELAY) return;
 
-  console.log(`[PTA] Syncing stats for ${actor.name}...`);
+  console.info(`[PTA] Syncing stats for ${actor.name}...`);
 
   const pokemonID = actor.data.data.sheetID;
 

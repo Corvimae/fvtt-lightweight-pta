@@ -14,8 +14,6 @@ export async function rollMetronome() {
     type: CONST.CHAT_MESSAGE_TYPES.OTHER,
   });
 
-  console.log(selectedMove);
-
   game.pta.macros.rollMove(
     selectedMove.data.name,
     selectedMove.data.data.type,
