@@ -9,11 +9,22 @@
     data-dtype="Number"
     placeholder="10"
   />
+
+  <div class="money-modify">
+    <a class="money-modify-button decrement">
+      <i class="fa fa-minus"></i>
+    </a>
+    <input type="text" class="money-modify-input" value="0" />
+    <a class="item-control money-modify-button increment">
+      <i class="fa fa-plus"></i>
+    </a>
+  </div>
+
 </div>
 
 <div class="inventory-list">
   {{#each data.carriables as |carriables category|}}
-  <div class="list-subheader">
+  <div class="list-subheader" data-category="{{category}}">
     <div class="inventory-list-subheader-name with-divider">{{category}}</div>
     <div class="list-subheader-column-name">Quantity</div>
     <a class="item-create add-carriable" title="Add Inventory Item">
@@ -48,4 +59,11 @@
   </div>
   {{/each}}
   {{/each}}
+  
+  <div class="list-subheader">
+    <a class="item-create add-carriable-category" title="Add new category">
+      <i class="fa fa-plus"></i>
+      Add new category
+    </a>
+  </div>
 </div>

@@ -58,6 +58,12 @@ export default class TrainerSheet extends ActorSheet {
       html.find('.restore-feature-uses').click(this.handleRestoreFeatureUses.bind(this));
       
       html.find('.add-carriable').click(this.handleAddCarriable.bind(this));
+
+      html.find('.add-carriable-category').click(this.handleAddCarriableCategory.bind(this));
+
+      html.find('.money-modify-button.increment').click(this.handleIncrementMoney.bind(this));
+      html.find('.money-modify-button.decrement').click(this.handleDecrementMoney.bind(this));
+
     }
 
     if(this.actor.owner) {
@@ -98,6 +104,7 @@ export default class TrainerSheet extends ActorSheet {
 
     const carriables = items.filter(item => item.type === 'carriable').reduce((acc, carriable) => {
       const category = carriable.data.category?.trim().length > 0 ? carriable.data.category : '(No category)';    
+
       return {
         ...acc,
         [category]: [...(acc[category] ?? []), carriable],
@@ -211,6 +218,18 @@ export default class TrainerSheet extends ActorSheet {
     }, { renderSheet: true });
   }
 
+  async handleAddCarriableCategory(event) {
+    event.preventDefault();
+
+    return await this.actor.createEmbeddedEntity("OwnedItem", {
+      name: 'New Item',
+      type: 'carriable',
+      data: {
+        category: 'New Category',
+      },
+    }, { renderSheet: true });
+  }
+
   handleEditItem(event) {
     event.preventDefault();
 
@@ -281,12 +300,51 @@ export default class TrainerSheet extends ActorSheet {
   async handleAddCarriable(event) {
     event.preventDefault();
 
+    const category = event.currentTarget.parentElement.getAttribute('data-category');
+
     return await this.actor.createEmbeddedEntity('OwnedItem', {
       name: 'New Item',
       type: 'carriable',
+      data: {
+        category,
+      },
     }, { renderSheet: true });
   }
   
+  async handleIncrementMoney(event) {
+    event.preventDefault();
+
+    const input = event.currentTarget.parentElement.querySelector('.money-modify-input');
+    const value = parseInt(input.value, 10);
+
+    if (Number.isNaN(value)) {
+      ui.notifications.error(`${input.value} is not a valid number.`);
+
+      return;
+    }
+
+    await this.actor.update({
+      'data.details.money': parseInt(this.actor.data.data.details.money, 10) + value,
+    });
+  }
+
+  async handleDecrementMoney(event) {
+    event.preventDefault();
+
+    const input = event.currentTarget.parentElement.querySelector('.money-modify-input');
+    const value = parseInt(input.value, 10);
+
+    if (Number.isNaN(value)) {
+      ui.notifications.error(`${input.value} is not a valid number.`);
+
+      return;
+    }
+
+    await this.actor.update({
+      'data.details.money': parseInt(this.actor.data.data.details.money, 10) - value,
+    });
+  }
+
   handleItemSummary(event) {
     event.preventDefault();
     let li = $(event.currentTarget).parents('.item');

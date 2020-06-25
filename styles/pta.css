@@ -552,7 +552,8 @@
   margin-left: 0.25rem;
 }
 
-.add-class {
+.add-class,
+.add-carriable-category {
   grid-column: 1 / -1;
   margin-top: 0.25rem;
 }
@@ -661,7 +662,7 @@
 .money-row {
   display: grid;
   margin: 0.25rem 0.25rem;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: max-content 1fr max-content;
   line-height: 1;
 }
 
@@ -681,6 +682,25 @@
 .money-row input {
   font-size: 1rem;
   color: #444;
+}
+
+.money-modify {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.money-modify-button {
+  font-size: 12px;
+  text-align: center;
+  color: #7a7971;
+}
+
+.money-modify input.money-modify-input {
+  margin: 0 0.25rem;
+  text-align: center;
+  width: 3rem;
 }
 
 button.import-pmd {
@@ -798,3 +818,4 @@ button.import-pmd {
 .add-moves-to-hotbar:hover {
   background-color: #000;
 }
+
