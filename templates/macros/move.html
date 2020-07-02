@@ -11,7 +11,11 @@
   {{#if isCrit}}
   <div class='pokemon-move-crit'>A critical hit!</div>
   {{/if}}
+  {{#if shouldRollDamage}}
   <div class='pokemon-move-damage'>Deals [[{{#if isCrit}} {{critDamage}} {{else}} {{damage}} {{/if}} + ({{relevantStatValue}} * {{combatStageMultiplier}}){{#if isStab}} + @stab{{/if}}]] {{attackTypeName}} <span class="inline-type {{type}}">{{type}}</span> damage!</div>
+  {{else}}
+  <div class='pokemon-move-damage'>Damage dice roll: [[/r {{damage}}]]</div>
+  {{/if}}
   {{/if}}
   <div class='pokemon-move-effects'>
     {{effects}}
