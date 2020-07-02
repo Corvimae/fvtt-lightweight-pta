@@ -1,6 +1,7 @@
 import { buildCommandForMove } from "../macros/macros.js";
 
 export async function handleItemDrop(item, position) {
+  console.log(item, position);
   if (item.type === 'move') createMoveAtHotbarPosition(item, position);
 }
 

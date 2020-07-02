@@ -33,7 +33,7 @@ export const SKILL_NAMES = {
   history: 'History',
   investigate: 'Investigate',
   programming: 'Programming',
-  bluff: 'Bluff',
+  bluff: 'Bluff/Diplomacy',
   perception: 'Perception',
   soothe: 'Soothe',
   streetwise: 'Streetwise',

@@ -1,4 +1,4 @@
-import { fetchPokemonData } from '../utils/pokemon-utils.js';
+import { fetchPokemonData } from '../utils/pokemonUtils.js';
 
 export function restartPokemonStatSyncInterval() {
   if (!game.user.isGM) return;

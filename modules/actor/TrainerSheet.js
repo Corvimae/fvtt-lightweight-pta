@@ -1,5 +1,7 @@
 import { STAT_SHORT_NAMES, STAT_FULL_NAMES, SKILL_NAMES } from '../utils/constants.js';
 import { getTagsForItem } from '../utils/items.js';
+import { getStatForSkill, calculateStatModifier, calculateSkillModifier } from '../utils/trainerUtils.js';
+import { rollSkill } from '../macros/macros.js';
 
 export default class TrainerSheet extends ActorSheet {
   constructor(...args) {
@@ -63,7 +65,13 @@ export default class TrainerSheet extends ActorSheet {
 
       html.find('.money-modify-button.increment').click(this.handleIncrementMoney.bind(this));
       html.find('.money-modify-button.decrement').click(this.handleDecrementMoney.bind(this));
-
+      
+      const dragSkillHandler = event => this.handleDragSkillEnd(event);
+  
+      html.find('.skill-rollable').each((_i, li) => {
+        li.setAttribute("draggable", true);
+        li.addEventListener("dragend", dragSkillHandler, false);
+      });
     }
 
     if(this.actor.owner) {
@@ -126,7 +134,7 @@ export default class TrainerSheet extends ActorSheet {
     return {
       ...data,
       stats: Object.entries(data.stats).reduce((acc, [stat, statData]) => {
-        const modifier = statData.value < 10 ? -10 + statData.value : Math.floor((statData.value - 10) / 2);
+        const modifier = calculateStatModifier(this.actor, stat)
 
         return {
           ...acc,
@@ -154,7 +162,7 @@ export default class TrainerSheet extends ActorSheet {
             [skill]: {
               ...skillData,
               icon: `<i class="${skillData.trained ? 'fas fa-check' : 'far fa-circle'}"></i>`,
-              modifier: skillData.trained ? 2 + data.stats[stat].modifier : Math.min(data.stats[stat].modifier, 1 + data.stab),
+              modifier: calculateSkillModifier(this.actor, skill),
               skillName: SKILL_NAMES[skill],
             },
           }), {}),
@@ -172,25 +180,45 @@ export default class TrainerSheet extends ActorSheet {
     return 'high'
   }
 
-  getStatForSkill(skillName) {
-    const match = Object.entries(this.actor.data.data.skills).find(([_stat, value]) => (
-      value.items[skillName] !== undefined
-    ));
-
-    return match?.[0];
-  }
 
   handleSkillTrainedToggle(event) {
     event.preventDefault();
 
     const skill = event.currentTarget.parentElement.getAttribute('data-skill');
-    const associatedStat = this.getStatForSkill(skill);
+    const associatedStat = getStatForSkill(this.actor, skill);
     const currentTrainedValue = this.actor.data.data.skills[associatedStat].items[skill].trained;
 
     this.actor.update({
       [`data.skills.${associatedStat}.items.${skill}.trained`]: !currentTrainedValue,
     });
   }
+
+  
+  async handleDragSkillEnd(event) {
+    const skill = event.target.getAttribute('data-skill');
+    const elementsAtPoint = document.elementsFromPoint(event.pageX, event.pageY);
+
+    if (!elementsAtPoint) return;
+
+    const macroElement = elementsAtPoint.find(elem => elem.classList.contains('macro'))
+
+    if (!macroElement) return;
+
+    const slot = macroElement.getAttribute('data-slot');
+
+    const macro = await Macro.create({
+      name: `${SKILL_NAMES[skill]} (${this.actor.name})`,
+      type: 'script',
+      command: `game.pta.macros.rollSkill('${this.actor.id}', '${skill}')`,
+      flags: {
+        'pta.skill': skill,
+        'pta.trainer': this.actor.id,
+      },
+    });
+  
+    game.user.assignHotbarMacro(macro, (ui.hotbar.page - 1) * 10 + slot);
+  }
+
 
   async handleAddFeature(event) {
     event.preventDefault();
@@ -252,14 +280,8 @@ export default class TrainerSheet extends ActorSheet {
     event.preventDefault();
 
     const skill = event.currentTarget.parentElement.getAttribute('data-skill');
-    const associatedStat = this.getStatForSkill(skill);
-    const modifierValue = this.getData().data.skills[associatedStat].items[skill].modifier;
-
-    await ChatMessage.create({
-      content: `<div class="larger-chat-message">${this.actor.name} attempts ${SKILL_NAMES[skill]}... [[1d20 + ${modifierValue}]]!</div>`,
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-    });
+   
+    rollSkill(this.actor.id, skill);
   }
 
   handleUsesChange(event) {

@@ -1,4 +1,4 @@
-import { calculateLevel } from '../utils/pokemon-utils.js';
+import { calculateLevel } from '../utils/pokemonUtils.js';
 
 export class PTAActor extends Actor {
   prepareData() {

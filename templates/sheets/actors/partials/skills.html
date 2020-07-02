@@ -128,7 +128,7 @@
         Attack
       </div>
       {{#each data.skills.atk.items as |skillData skill|}}
-      <div class="skill-row" data-skill="{{skill}}">
+      <div class="skill-row skill-rollable" data-skill="{{skill}}">
         <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
         <a class="skill-name rollable">{{skillData.skillName}}</a>
         <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
@@ -140,7 +140,7 @@
         Defense
       </div>
       {{#each data.skills.def.items as |skillData skill|}}
-      <div class="skill-row" data-skill="{{skill}}">
+      <div class="skill-row skill-rollable" data-skill="{{skill}}">
         <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
         <a class="skill-name rollable">{{skillData.skillName}}</a>
         <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
@@ -154,7 +154,7 @@
         Special Attack
       </div>
       {{#each data.skills.spatk.items as |skillData skill|}}
-      <div class="skill-row" data-skill="{{skill}}">
+      <div class="skill-row skill-rollable" data-skill="{{skill}}">
         <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
         <a class="skill-name rollable">{{skillData.skillName}}</a>
         <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
@@ -166,7 +166,7 @@
         Special Defense
       </div>
       {{#each data.skills.spdef.items as |skillData skill|}}
-      <div class="skill-row" data-skill="{{skill}}">
+      <div class="skill-row skill-rollable" data-skill="{{skill}}">
         <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
         <a class="skill-name rollable">{{skillData.skillName}}</a>
         <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>
@@ -178,7 +178,7 @@
         Speed
       </div>
       {{#each data.skills.spd.items as |skillData skill|}}
-      <div class="skill-row" data-skill="{{skill}}">
+      <div class="skill-row skill-rollable" data-skill="{{skill}}">
         <a class="trained-toggle skill-trained" title="{{skill.hover}}">{{{skillData.icon}}}</a>
         <a class="skill-name rollable">{{skillData.skillName}}</a>
         <div class="skill-modifier">({{numberFormat skillData.modifier decimals=0 sign=true}})</div>

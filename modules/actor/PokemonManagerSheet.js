@@ -1,4 +1,4 @@
-import { fetchPokemonData } from "../utils/pokemon-utils.js";
+import { fetchPokemonData } from "../utils/pokemonUtils.js";
 import { createMoveAtHotbarPosition } from '../hooks/handleItemDrop.js';
 
 export default class PokemonManagerSheet extends ActorSheet {

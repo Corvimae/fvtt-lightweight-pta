@@ -1,4 +1,4 @@
-import { fetchPokemonData } from "../utils/pokemon-utils.js";
+import { fetchPokemonData } from "../utils/pokemonUtils.js";
 
 const UPDATE_DELAY = 1000 * 30; // 30 seconds
 

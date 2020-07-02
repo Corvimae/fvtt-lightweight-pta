@@ -1,4 +1,4 @@
-import { normalizePokemonName, fetchPokemonData } from '../utils/pokemon-utils.js';
+import { normalizePokemonName, fetchPokemonData } from '../utils/pokemonUtils.js';
 
 export function renderEntitySheetConfig(sheet, _element, entity) {
   if(entity.object.type === 'pokemon' && entity.sheetClasses.indexOf('pta.PokemonManagerSheet') !== -1) {
