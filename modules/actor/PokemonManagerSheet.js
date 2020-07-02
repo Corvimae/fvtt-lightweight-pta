@@ -58,11 +58,12 @@ export default class PokemonManagerSheet extends ActorSheet {
     event.preventDefault();
 
     const pokemonData = await fetchPokemonData(this.actor.data.data.sheetID);
+    const hotbarPageOffset = (ui.hotbar.page - 1) * 10;
 
     pokemonData.moves.forEach((move, index) => {
       const relevantMoveItem = game.items.find(item => item.data.type === 'move' && item.data.flags.pta?.dbId === move.definition.id);
 
-      if (relevantMoveItem) createMoveAtHotbarPosition(relevantMoveItem, index + 1);
+      if (relevantMoveItem) createMoveAtHotbarPosition(relevantMoveItem, hotbarPageOffset + index + 1);
     });
   }
 }
