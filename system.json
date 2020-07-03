@@ -2,7 +2,7 @@
   "name": "pta",
   "title": "Lightweight PTA",
   "description": "Some scaffolding for PTA in Foundry",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "author": "Corvimae",
   "esmodules": [
     "modules/pta.js"
@@ -19,5 +19,5 @@
   "primaryTokenAttribute": "resources.health",
   "url": "https://github.com/corvimae/foundry-pta",
   "manifest": "https://raw.githubusercontent.com/corvimae/fvtt-lightweight-pta/master/system.json",
-  "download": "https://github.com/Corvimae/fvtt-lightweight-pta/archive/1.0.21.zip"
+  "download": "https://github.com/Corvimae/fvtt-lightweight-pta/archive/1.0.22.zip"
 }
