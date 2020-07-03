@@ -2,6 +2,7 @@ import { STAT_SHORT_NAMES, STAT_FULL_NAMES, SKILL_NAMES } from '../utils/constan
 import { getTagsForItem } from '../utils/items.js';
 import { getStatForSkill, calculateStatModifier, calculateSkillModifier } from '../utils/trainerUtils.js';
 import { rollSkill, rollStat } from '../macros/macros.js';
+import { handleChangeInputDelta } from '../utils/sheetUtils.js';
 
 export default class TrainerSheet extends ActorSheet {
   constructor(...args) {
@@ -79,6 +80,10 @@ export default class TrainerSheet extends ActorSheet {
         li.setAttribute("draggable", true);
         li.addEventListener("dragend", dragStatHandler, false);
       });
+
+      const handleNumericChangeEvent = event => handleChangeInputDelta(this.actor.data, event);
+      
+      html.find('input[data-dtype="Number"]').change(handleNumericChangeEvent);
     }
 
     if(this.actor.owner) {

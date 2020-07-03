@@ -1,3 +1,5 @@
+import { handleChangeInputDelta } from "../utils/sheetUtils.js";
+
 export default class CarriableSheet extends ItemSheet {
   constructor(...args) {
     super(...args);
@@ -16,6 +18,16 @@ export default class CarriableSheet extends ItemSheet {
 
   get template() {
     return 'systems/pta/templates/sheets/items/carriable.html';
+  }
+
+  activateListeners(html) {
+    if (this.isEditable) {
+      const handleNumericChangeEvent = event => handleChangeInputDelta(this.item.data, event);
+
+      html.find('input[data-dtype="Number"]').change(handleNumericChangeEvent);
+    }
+
+    super.activateListeners(html);
   }
 
   getData() {        

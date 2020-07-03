@@ -7,7 +7,8 @@
         "stats": {
           "hp": {
             "value": 10,
-            "bonus": 0
+            "bonus": 0,
+            "hpMaxBonus": 0
           },
           "atk": {
             "value": 10,

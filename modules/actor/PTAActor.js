@@ -11,7 +11,7 @@ export class PTAActor extends Actor {
   prepareTrainerData() {
     const trainerData = this.data.data;
     
-    trainerData.resources.health.max = trainerData.stats.hp.value * 4 + trainerData.level * 4;
+    trainerData.resources.health.max = trainerData.stats.hp.value * 4 + trainerData.level * 4 + (trainerData.stats.hp.hpMaxBonus || 0);
 
     trainerData.stab = Math.floor(trainerData.level / 5);
   }

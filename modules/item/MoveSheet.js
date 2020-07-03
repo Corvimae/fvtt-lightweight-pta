@@ -1,3 +1,5 @@
+import { handleChangeInputDelta } from "../utils/sheetUtils.js";
+
 export default class MoveSheet extends ItemSheet {
   constructor(...args) {
     super(...args);
@@ -30,5 +32,15 @@ export default class MoveSheet extends ItemSheet {
         }
       },
     };
+  }
+
+  activateListeners(html) {
+    if (this.isEditable) {
+      const handleNumericChangeEvent = event => handleChangeInputDelta(this.item.data, event);
+
+      html.find('input[data-dtype="Number"]').change(handleNumericChangeEvent);
+    }
+
+    super.activateListeners(html);
   }
 }

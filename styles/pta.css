@@ -211,10 +211,15 @@
 }
 
 
-.skill-list-stat-header {
+.skill-list-stat-header,
+.options-list-header {
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 0.125rem;
+}
+
+.options-list-header:not(:first-child) {
+  margin-top: 0.5rem;
 }
 
 .skill-row {
@@ -240,8 +245,6 @@
 }
 
 .sheet-navigation {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr) max-content;
   margin: 0.25rem 0;
   padding: 0;
   border: 2px groove #eeede0;
@@ -258,6 +261,7 @@
 }
 
 .sheet-navigation .item.icon {
+  max-width: max-content;
   padding: 0.25rem 0.5rem;
 }
 

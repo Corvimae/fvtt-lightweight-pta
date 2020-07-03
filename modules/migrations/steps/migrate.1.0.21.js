@@ -1,5 +1,5 @@
 export function migrateActor(actor) {
-  if(actor.data.type === 'trainer' && !actor.data.data.stats.hp.bonus) {
+  if(actor.data.type === 'trainer' && actor.data.data.stats.hp.bonus === undefined) {
     actor.update({
       data: {
         stats: {
