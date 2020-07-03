@@ -1,7 +1,7 @@
 import { STAT_SHORT_NAMES, STAT_FULL_NAMES, SKILL_NAMES } from '../utils/constants.js';
 import { getTagsForItem } from '../utils/items.js';
 import { getStatForSkill, calculateStatModifier, calculateSkillModifier } from '../utils/trainerUtils.js';
-import { rollSkill } from '../macros/macros.js';
+import { rollSkill, rollStat } from '../macros/macros.js';
 
 export default class TrainerSheet extends ActorSheet {
   constructor(...args) {
@@ -72,10 +72,18 @@ export default class TrainerSheet extends ActorSheet {
         li.setAttribute("draggable", true);
         li.addEventListener("dragend", dragSkillHandler, false);
       });
+
+      const dragStatHandler = event => this.handleDragStatEnd(event);
+
+      html.find('.stat-rollable').each((_i, li) => {
+        li.setAttribute("draggable", true);
+        li.addEventListener("dragend", dragStatHandler, false);
+      });
     }
 
     if(this.actor.owner) {
       html.find('.skill-name.rollable:not(.disabled)').click(this.handleRollSkill.bind(this));
+      html.find('.stat-rollable:not(.disabled)').click(this.handleRollStat.bind(this));
     }
 
     super.activateListeners(html);
@@ -143,6 +151,7 @@ export default class TrainerSheet extends ActorSheet {
             modifier,
             modifierCSSClass: this.getModifierCSSClass(modifier),
             shortName: STAT_SHORT_NAMES[stat],
+            fullName: STAT_FULL_NAMES[stat],
           },
         };
       }, {}),
@@ -218,7 +227,36 @@ export default class TrainerSheet extends ActorSheet {
   
     game.user.assignHotbarMacro(macro, (ui.hotbar.page - 1) * 10 + slot);
   }
+  
+  async handleDragStatEnd(event) {
+    const stat = event.target.getAttribute('data-stat');
+  
+    const macro = await Macro.create({
+      name: `${STAT_FULL_NAMES[stat]} (${this.actor.name})`,
+      type: 'script',
+      command: `game.pta.macros.rollStat('${this.actor.id}', '${stat}')`,
+      flags: {
+        'pta.stat': stat,
+        'pta.trainer': this.actor.id,
+      },
+    });
+  
+    game.user.assignHotbarMacro(macro, this.getMacroIndexAtPoint(event));
+  }
 
+  getMacroIndexAtPoint(event) {
+    const elementsAtPoint = document.elementsFromPoint(event.pageX, event.pageY);
+
+    if (!elementsAtPoint) return -1;
+
+    const macroElement = elementsAtPoint.find(elem => elem.classList.contains('macro'))
+
+    if (!macroElement) return -1;
+
+    const slot = macroElement.getAttribute('data-slot');
+
+    return (ui.hotbar.page - 1) * 10 + slot;
+  }
 
   async handleAddFeature(event) {
     event.preventDefault();
@@ -282,6 +320,14 @@ export default class TrainerSheet extends ActorSheet {
     const skill = event.currentTarget.parentElement.getAttribute('data-skill');
    
     rollSkill(this.actor.id, skill);
+  }
+
+  async handleRollStat(event) {
+    event.preventDefault();
+
+    const stat = event.currentTarget.parentElement.getAttribute('data-ability');
+   
+    rollStat(this.actor.id, stat);
   }
 
   handleUsesChange(event) {

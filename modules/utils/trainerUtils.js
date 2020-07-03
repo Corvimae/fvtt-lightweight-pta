@@ -9,7 +9,9 @@ export function getStatForSkill(actor, skillName) {
 export function calculateStatModifier(actor, stat) {
   const statData = actor.data.data.stats[stat];
 
-  return statData.value < 10 ? -10 + statData.value : Math.floor((statData.value - 10) / 2);
+  const baseModifier = statData.value < 10 ? -10 + statData.value : Math.floor((statData.value - 10) / 2);
+
+  return baseModifier + (statData.bonus || 0);
 }
 
 export function calculateSkillModifier(actor, skillName) {

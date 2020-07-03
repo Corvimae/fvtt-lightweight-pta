@@ -1,7 +1,7 @@
 import { syncPokemonStatValues } from '../processes/syncPokemonStatValues.js';
 import { calculateCombatStageMultiplier } from '../utils/pokemonUtils.js';
-import { getStatForSkill, calculateSkillModifier } from '../utils/trainerUtils.js';
-import { SKILL_NAMES } from '../utils/constants.js';
+import { getStatForSkill, calculateSkillModifier, calculateStatModifier } from '../utils/trainerUtils.js';
+import { SKILL_NAMES, STAT_FULL_NAMES } from '../utils/constants.js';
 
 export async function rollMetronome() {
   const allMoves = game.items.filter(item => item.data.type === 'move');
@@ -96,6 +96,18 @@ export async function rollSkill(actorId, skillName) {
 
   await ChatMessage.create({
     content: `<div class="larger-chat-message">${actor.name} attempts ${SKILL_NAMES[skillName]}... [[1d20 + ${modifierValue}]]!</div>`,
+    speaker: ChatMessage.getSpeaker({ actor }),
+    type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+  });
+}
+
+export async function rollStat(actorId, statName) {
+  const actor = game.actors.get(actorId);
+
+  const modifierValue = calculateStatModifier(actor, statName);
+
+  await ChatMessage.create({
+    content: `<div class="larger-chat-message">${actor.name} rolls ${STAT_FULL_NAMES[statName]}... [[1d20 + ${modifierValue}]]!</div>`,
     speaker: ChatMessage.getSpeaker({ actor }),
     type: CONST.CHAT_MESSAGE_TYPES.OTHER,
   });

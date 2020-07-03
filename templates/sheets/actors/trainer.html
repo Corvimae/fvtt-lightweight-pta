@@ -35,7 +35,7 @@
     <ul class="header-detail-list">
       {{#each data.stats as |stat id|}}
       <li class="stat header-detail-item" data-ability="{{id}}">
-        <label>{{stat.shortName}}</label>
+        <a class="stat-rollable rollable" data-stat="{{id}}">{{stat.shortName}}</a>
         <div class="stat-values">
           <input
             name="data.stats.{{id}}.value" 
@@ -59,6 +59,7 @@
     <a class="item" data-tab="features">Features</a>
     <a class="item" data-tab="inventory">Inventory</a>
     <a class="item" data-tab="background">League Application</a>
+    <a class="item icon" data-tab="options"><i class="fa fa-cog"></i></a>
   </nav>
 
   <div class="sheet-content">
@@ -77,6 +78,10 @@
 
     <div class="tab features flexcol" data-group="primary" data-tab="inventory">
       {{> "systems/pta/templates/sheets/actors/partials/inventory.html"}}
+    </div>
+
+    <div class="tab features flexcol" data-group="primary" data-tab="options">
+      {{> "systems/pta/templates/sheets/actors/partials/options.html"}}
     </div>
   </div>
 </form>

@@ -1,0 +1,14 @@
+{{#each data.stats as |stat id|}}
+<div class="form-group">
+  <label>{{stat.fullName}} Modifier Bonus</label>
+  <div class="form-fields">
+    <input
+    name="data.stats.{{id}}.bonus" 
+    type="text"
+    value="{{stat.bonus}}"
+    data-dtype="Number"
+    placeholder="0"
+  />
+  </div>
+</div>
+{{/each}}

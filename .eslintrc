@@ -1,0 +1,45 @@
+{
+  "env": {
+      "es6": true,
+      "node": true
+  },
+  "extends": [
+      "airbnb-base"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "@typescript-eslint"
+  ],
+  "rules": {
+      "arrow-body-style": 0,
+      "comma-dangle": 0,
+      "linebreak-style": ["error", "windows"],
+  "indent": 0,
+  "no-async-promise-executor": 0,
+      "no-await-in-loop": 0,
+      "no-console": 0,
+      "no-empty-function": 0,
+      "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+      "no-restricted-syntax": 0,
+      "no-tabs": 0,
+      "no-trailing-spaces": 0,
+      "no-unused-vars": 0,
+      "no-useless-constructor": 0,
+      "@typescript-eslint/indent": ["error", "tab"],
+      "@typescript-eslint/no-empty-function": ["error"],
+      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "@typescript-eslint/no-useless-constructor": ["error"]
+  },
+  "settings": {
+      "import/resolver": {
+          "node": {
+              "paths": ["src"],
+              "extensions": [".ts"]
+          }
+      }
+  }
+}

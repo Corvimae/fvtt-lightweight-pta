@@ -8,6 +8,7 @@ export const preloadTemplates = async function() {
     'systems/pta/templates/sheets/actors/partials/background.html',
     'systems/pta/templates/sheets/actors/partials/features.html',
     'systems/pta/templates/sheets/actors/partials/inventory.html',
+    'systems/pta/templates/sheets/actors/partials/options.html',
     'systems/pta/templates/sheets/items/carriable.html',
     'systems/pta/templates/sheets/items/feature.html',
     'systems/pta/templates/sheets/items/move.html',

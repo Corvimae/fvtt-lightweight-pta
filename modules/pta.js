@@ -3,7 +3,7 @@ import TrainerSheet from './actor/TrainerSheet.js';
 import FeatureSheet from './item/FeatureSheet.js';
 import CarriableSheet from './item/CarriableSheet.js';
 import MoveSheet from './item/MoveSheet.js';
-import { rollMove, rollMetronome, rollSkill } from './macros/macros.js';
+import { rollMove, rollMetronome, rollSkill, rollStat } from './macros/macros.js';
 import { handleItemDrop } from './hooks/handleItemDrop.js';
 import PokemonManagerSheet from './actor/PokemonManagerSheet.js';
 import TokenSheet from './actor/TokenSheet.js';
@@ -65,6 +65,7 @@ Hooks.once('init', function() {
       rollMetronome,
       rollMove,
       rollSkill,
+      rollStat,
     },
   };
 
