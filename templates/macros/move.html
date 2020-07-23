@@ -14,7 +14,7 @@
   <div class='pokemon-move-damage'>
     Deals
     {{#if shouldRollDamage}}
-    [[{{#if isCrit}} {{critDamage}} {{else}} {{damage}} {{/if}} + ({{relevantStatValue}} * {{combatStageMultiplier}}){{#if isStab}} + @stab{{/if}}]]
+    [[{{#if isCrit}} {{critDamage}} {{else}} {{damage}} {{/if}} + ({{relevantStatValue}} * {{combatStageMultiplier}}){{#if isStab}} + @stab{{/if}} + {{addedDamage}}]]
     {{else}}
     [[/r {{damage}}]]
     {{/if}}

@@ -28,7 +28,7 @@ export async function rollMetronome() {
   );
 }
 
-export async function rollMove(name, type, frequency, range, damage, accuracy, attackType, effects) {
+export async function rollMove(name, type, frequency, range, damage, accuracy, attackType, effects, addedDamage = 0) {
   const speaker = ChatMessage.getSpeaker();
 
   let actor = game.actors.get(speaker.actor);
@@ -58,6 +58,7 @@ export async function rollMove(name, type, frequency, range, damage, accuracy, a
     critDamage: `${dice * 2}d${dieSize} + ${flat * 2}`,
     accuracy,
     effects,
+    addedDamage,
     attackTypeName: attackType === 0 ? 'Physical' : 'Special',
     hasEffects: effects !== '-' && effects.trim().length > 0,
     hasValidAttackRoll: dice !== 0 && dieSize !== 0 && flat !== 0 && attackType !== 2,
