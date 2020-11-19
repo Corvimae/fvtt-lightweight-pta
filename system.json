@@ -15,7 +15,7 @@
   "gridUnits": "m",
   "templateVersion": 2,
   "miniumCoreVersion": "0.7.7",
-  "compatibleCoreVersion": "0.7.7w",
+  "compatibleCoreVersion": "0.7.7",
   "primaryTokenAttribute": "resources.health",
   "url": "https://github.com/corvimae/foundry-pta",
   "manifest": "https://raw.githubusercontent.com/corvimae/fvtt-lightweight-pta/master/system.json",
