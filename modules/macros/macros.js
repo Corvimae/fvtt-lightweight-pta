@@ -43,10 +43,8 @@ export async function rollMove(name, type, frequency, range, damage, accuracy, a
   // Get updated actor data.
   actor = game.actors.get(speaker.actor);
 
-  const accuracyCheck = new Die(20);
+  const accuracyCheck = new Die({ faces: 20, number: 1}).evaluate();
   
-  accuracyCheck.roll(1);
-
   const [_, dice, dieSize, flat] = /([0-9]+)d([0-9]+)\s*\+\s*([0-9]+)/.exec(damage) ?? [0, 0, 0, 0];
 
   const content = await renderTemplate('/systems/pta/templates/macros/move.html', {
@@ -64,10 +62,10 @@ export async function rollMove(name, type, frequency, range, damage, accuracy, a
     hasValidAttackRoll: dice !== 0 && dieSize !== 0 && flat !== 0 && attackType !== 2,
     shouldRollDamage: game.settings.get('pta', 'rollDamageDice'),
     hasAccuracyCheck: range.indexOf('No Target') === -1 || attackType !== 2,
-    accuracyCheck: accuracyCheck.results[0],
+    accuracyCheck: accuracyCheck.rolls[0].result,
     relevantStatValue: attackType === 0 ? '@stats.atk.value' : '@stats.spatk.value',
     combatStageMultiplier: calculateCombatStageMultiplier(attackType === 0 ? actor.data.data.stats.atk.combatStages.value : actor.data.data.stats.spatk.combatStages.value),
-    isCrit: accuracyCheck.results[0] === 20,
+    isCrit: accuracyCheck.rolls[0].result === 20,
     isStab: actor.data.data.type1 === type || actor.data.data.type2 === type,
     speaker,
   });

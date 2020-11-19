@@ -1,7 +1,7 @@
 import { normalizePokemonName, fetchPokemonData } from '../utils/pokemonUtils.js';
 
 export function renderEntitySheetConfig(sheet, _element, entity) {
-  if(entity.object.type === 'pokemon' && entity.sheetClasses.indexOf('pta.PokemonManagerSheet') !== -1) {
+  if(entity.object.type === 'pokemon' && Object.keys(entity.sheetClasses).indexOf('pta.PokemonManagerSheet') !== -1) {
     const form = sheet.element[0].querySelector('form');
 
     const sheetIDContainer = document.createElement('div');
