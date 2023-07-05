@@ -5,11 +5,11 @@
     "version": "0.1",
     "compatibility": {
       "minimum": "9",
-      "verified": "11",
+      "verified": "11"
     },
     "authors": [
       {
-        "name": "Corvimae, digitalwerewolf",
+        "name": "Corvimae, digitalwerewolf"
       }
     ],
     "esmodules": [
